@@ -15,7 +15,7 @@ jobs:
       - name: Set up Node.js 
         uses: actions/setup-node@v3
         with:
-          node-version: 16.9.0
+          node-version: 18
       - name: Run linter
         run: |
           cd starter/frontend
@@ -31,13 +31,13 @@ jobs:
       - name: Set up Node.js 
         uses: actions/setup-node@v3
         with:
-          node-version: latest
+          node-version: 18
       - name: Install dependencies
-        run: cd starter/frontend && npm ci
-      - name: Build app
-        run: cd starter/frontend && npm build
-      - name: Run tests
-        run: cd starter/frontend && npm test
+        run: |
+          cd starter/frontend
+          npm ci
+          npm run build
+          npm test
 
   build:
     needs: [build-and-run-linter, build-and-test]
